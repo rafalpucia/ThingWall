@@ -58,7 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
+    <Compile Include="Migrations\201603071925384_Inicjalizacja.cs" />
+    <Compile Include="Migrations\201603071925384_Inicjalizacja.Designer.cs">
+      <DependentUpon>201603071925384_Inicjalizacja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603071950194_Przykladowa tabela.cs" />
+    <Compile Include="Migrations\201603071950194_Przykladowa tabela.Designer.cs">
+      <DependentUpon>201603071950194_Przykladowa tabela.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\ExampleItem.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +77,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603071925384_Inicjalizacja.resx">
+      <DependentUpon>201603071925384_Inicjalizacja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603071950194_Przykladowa tabela.resx">
+      <DependentUpon>201603071950194_Przykladowa tabela.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

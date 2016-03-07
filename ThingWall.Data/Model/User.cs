@@ -11,6 +11,8 @@ namespace ThingWall.Data.Model
 {
     public class User : IdentityUser
     {
+        //PROTIP: tutaj możecie dodać właściwości aby dołożyć coś do tabeli użytkowników
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
