@@ -12,7 +12,6 @@ namespace ThingWall.Controllers
 {
     public class ItemsController : Controller
     {
-        private DataContext _dbContext;
         // GET: Items
         public ActionResult Index()
         {
@@ -25,28 +24,35 @@ namespace ThingWall.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult Create(ItemViewModels NewItem)
+        public ActionResult Create(ItemViewModels newItem)
         {
-            _dbContext = new DataContext();
-            Item ItemToDatabase = new Item();
-            ItemToDatabase.Name = NewItem.Name;
-            ItemToDatabase.Description = NewItem.Description;
-            ItemToDatabase.CreateDate = DateTime.Now.Date;
-            ItemToDatabase.OwnerId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+                using (var ctx = new DataContext())
+                {
+                    Item itemToDatabase = new Item();
+                    itemToDatabase.Name = newItem.Name;
+                    itemToDatabase.Description = newItem.Description;
+                    itemToDatabase.CreateDate = DateTime.Now.Date;
+                    itemToDatabase.OwnerId = User.Identity.GetUserId();
 
 
-            _dbContext.Items.Add(ItemToDatabase);
-            _dbContext.SaveChanges();
+                    ctx.Items.Add(itemToDatabase);
+                    ctx.SaveChanges();
+                }
+            }
             return View();
         }
         [Authorize]
         public ActionResult CurrentUserItems()
         {
-            _dbContext = new DataContext();
-            string UserID = User.Identity.GetUserId();
-            var ItemsList = _dbContext.Items.Where(x => x.OwnerId == UserID).ToList();
-
+            using (var ctx = new DataContext())
+            {
+                string UserID = User.Identity.GetUserId();
+                var ItemsList = ctx.Items.Where(x => x.OwnerId == UserID).ToList();
+            
             return View(ItemsList);
+            }
         }
     }
 }
