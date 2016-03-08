@@ -66,8 +66,13 @@
     <Compile Include="Migrations\201603071950194_Przykladowa tabela.Designer.cs">
       <DependentUpon>201603071950194_Przykladowa tabela.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603072304454_ItemAndNick.cs" />
+    <Compile Include="Migrations\201603072304454_ItemAndNick.Designer.cs">
+      <DependentUpon>201603072304454_ItemAndNick.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ExampleItem.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603071950194_Przykladowa tabela.resx">
       <DependentUpon>201603071950194_Przykladowa tabela.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603072304454_ItemAndNick.resx">
+      <DependentUpon>201603072304454_ItemAndNick.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

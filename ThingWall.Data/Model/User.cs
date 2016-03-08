@@ -12,6 +12,7 @@ namespace ThingWall.Data.Model
     public class User : IdentityUser
     {
         //PROTIP: tutaj możecie dodać właściwości aby dołożyć coś do tabeli użytkowników
+        public string Nick { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

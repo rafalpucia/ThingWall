@@ -17,6 +17,7 @@ namespace ThingWall.Data
         //zwróćcie uwagę, że Users już jest w klasie bazowej IdentityDbContext (trzeba wejść głębiej przez F12)
 
         public DbSet<ExampleItem> ExampleItems { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         //PROTIP: DefaultConnection to nazwa "connection string" w nadrzędnym Web.config projektu (ThingWall)
         //Przydatne w przypadku korzystania z kilku baz równocześnie (oddzielne DbContext, oddzielne connection stringi).
