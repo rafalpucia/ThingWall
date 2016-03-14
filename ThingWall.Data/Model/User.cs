@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -12,6 +13,8 @@ namespace ThingWall.Data.Model
     public class User : IdentityUser
     {
         //PROTIP: tutaj możecie dodać właściwości aby dołożyć coś do tabeli użytkowników
+        [Required]
+        public string Nick { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
