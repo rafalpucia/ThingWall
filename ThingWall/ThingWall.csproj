@@ -265,6 +265,7 @@
     <Content Include="Views\Items\Create.cshtml" />
     <Content Include="Views\Items\CurrentUserItems.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Items\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

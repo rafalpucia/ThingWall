@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ThingWall.Data.Model;
 
 namespace ThingWall.Models
 {
@@ -21,5 +22,12 @@ namespace ThingWall.Models
         public string Username { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+    }
+
+    public class ShowViewModel
+    {
+        public List<Item> Items { get; set; }
+        public string Username { get; set; }
+        public string UserID { get; set; }
     }
 }

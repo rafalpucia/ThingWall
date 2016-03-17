@@ -22,14 +22,13 @@ namespace ThingWall.Controllers
         {
             using (var ctx = new DataContext())
             {
-                
                 if (ctx.Users.Find(id) == null)
                 {
                     id = User.Identity.GetUserId();
                 }
                 var user = ctx.Users.Find(id);
                 var model = new CreateViewModel();
-                model.Username = user.Email;
+                model.Username = user.UserName;
 
                 return View(model);
             }
@@ -42,9 +41,13 @@ namespace ThingWall.Controllers
             {
                 using (var ctx = new DataContext())
                 {
-                    if (ctx.Users.Find(id) == null)
+                    if (id == null)
                     {
                         id = User.Identity.GetUserId();
+                    }
+                    if (ctx.Users.Find(id) == null)
+                    {
+                        return HttpNotFound();
                     }
 
                     Item itemToDatabase = new Item();
@@ -53,12 +56,11 @@ namespace ThingWall.Controllers
                     itemToDatabase.CreateDate = DateTime.Now.Date;
                     itemToDatabase.OwnerId = id;
 
-
                     ctx.Items.Add(itemToDatabase);
                     ctx.SaveChanges();
                 }
             }
-            return View();
+            return RedirectToAction("Show", "Items", new { id = id });
         }
         [Authorize]
         public ActionResult CurrentUserItems()
@@ -70,6 +72,32 @@ namespace ThingWall.Controllers
 
                 return View(ItemsList);
             }
+        }
+
+        // GET: Show
+        public ActionResult Show(string id)
+        {
+            using (var ctx = new DataContext())
+            {
+                var model = new ShowViewModel();
+                var items = new List<Item>();
+                if (id == null)
+                {
+                    id = User.Identity.GetUserId();
+                }
+                var user = ctx.Users.Find(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                items = ctx.Items.Where(x => x.OwnerId == id).ToList();
+                model.Username = user.UserName;
+                model.UserID = id;
+                model.Items = items;
+
+                return View(model);
+            }
+
         }
 
     }
